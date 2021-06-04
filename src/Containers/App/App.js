@@ -10,15 +10,14 @@ function App() {
   // States
   const [tasks, setTasks] = useState([
     {
-      task: "allez au marché",
+      content: "allez au marché",
+      done: false
     },
     {
-      task: "Apprendre JS",
+      content: "Apprendre JS",
+      done: false
     },
   ]);
-
-  const [transform, setTransform] = useState(false);
-
 
   // Méthodes
 
@@ -34,11 +33,12 @@ function App() {
     setTasks(newtasks);
   };
 
-  let cartes = tasks.map((task, index) => {
+  let tasksDisplayed = tasks.map((task, index) => {
     return (
       <Task
         key={index}
-        task={task.task}
+        done={task.done}
+        task={task.content}
         strike= {() => strikeClickHandler(index)}
         remove={() => removeClickHandler(index)}
       ></Task>
@@ -51,15 +51,14 @@ function App() {
       <header>
         <span>TO-DO</span>
       </header>
-
       <div className={classes.add}>
         <form>
           <input type="text" placeholder="Que souhaitez-vous ajouter ?" />
           <button type="submit">Ajouter</button>
         </form>
       </div>
-      <div transformed={transform}>
-        {cartes}
+      <div>
+        {tasksDisplayed}
       </div>
     </div>
   );
